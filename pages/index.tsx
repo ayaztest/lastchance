@@ -114,7 +114,8 @@ const getNFTNames = (nfts: NFT[]) => {
       streetAddress,
       nftNames: ownedNFTNames,
       totaltwo,
-      nftNamestwo: ownedNFTNamestwo
+      nftNamestwo: ownedNFTNamestwo,
+    
     }
 
     const rawResponse = await fetch('/api/submit', {
@@ -140,7 +141,7 @@ const getNFTNames = (nfts: NFT[]) => {
     setSelectedOption('')
     setStreetAddress('')
     setOwnedNFTNames([])
-    
+    setTotaltwo('')
     
     
   }
@@ -186,7 +187,7 @@ setOwnedNFTNames(ownedNFTNamesFiltered);
      <ConnectWallet />  {hasClaimedNFT ? (
   <main className='relative mt-4 px-4 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-20 bg-clip-padding bg-opacity-60 border border-gray-200' >
    <div>
-          <img src="https://presend.io/wp-content/uploads/2023/02/pb.png" className="h-16 sm:h-24" />
+          <img src="https://wolfer.finance/wp-content/uploads/2022/04/Logo-1.jpg" className="h-16 sm:h-24 rounded-md mx-auto" />
         </div>   <div className='max-w-5xl mx-auto py-2'>
         <form className='py-4 space-y-4' onSubmit={handleSubmit}>
           <div className='flex items-center justify-center'>
@@ -199,7 +200,7 @@ setOwnedNFTNames(ownedNFTNamesFiltered);
               type='text'
               name='firstname'
               id='firstname'
-              className='shadow-md focus:ring-indigo-500 focus:border-indigo-500 block w-96 sm:text-md border-gray-300 rounded-md'
+              className='shadow-md focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-md border-gray-300 rounded-md'
               placeholder='First Name' required
             />
           </div>
@@ -213,7 +214,7 @@ setOwnedNFTNames(ownedNFTNamesFiltered);
               type='text'
               name='lastname'
               id='lastname'
-              className='shadow-md focus:ring-indigo-500 focus:border-indigo-500 block w-96 sm:text-md border-gray-300 rounded-md'
+              className='shadow-md focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-md border-gray-300 rounded-md'
               placeholder='Last Name' required
             />
           </div>
@@ -227,7 +228,7 @@ setOwnedNFTNames(ownedNFTNamesFiltered);
               type='email'
               name='email'
               id='email'
-              className='shadow-md focus:ring-indigo-500 focus:border-indigo-500 block w-96 sm:text-md border-gray-300 rounded-md'
+              className='shadow-md focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-md border-gray-300 rounded-md'
               placeholder='Your Email' required
             />
           </div>
@@ -241,7 +242,7 @@ setOwnedNFTNames(ownedNFTNamesFiltered);
               type='text'
               name='streetAddress'
               id='streetAddress'
-              className='shadow-md focus:ring-indigo-500 focus:border-indigo-500 block w-96 sm:text-md border-gray-300 rounded-md'
+              className='shadow-md focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-md border-gray-300 rounded-md'
               placeholder='Your Address (optional)' 
             />
                 </div>
@@ -255,34 +256,35 @@ setOwnedNFTNames(ownedNFTNamesFiltered);
               type='text'
               name='country'
               id='country'
-              className='shadow-md focus:ring-indigo-500 focus:border-indigo-500 block w-96 sm:text-md border-gray-300 rounded-md'
+              className='shadow-md focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-md border-gray-300 rounded-md'
               placeholder='Your Country' 
             />
                 </div>
                  <div className="flex flex-col items-center justify-center">
-      <label htmlFor="nft-count" className="text-base font-medium text-left w-96 mb-2">Total NFTs Owned:</label>
+      <label htmlFor="nft-count" className="text-base font-medium text-left w-full mb-2">Total NFTs Owned:</label>
       <input
         type="text"
         id="nft-count"
         name="nft-count"
         value={total}
         onChange={(e) => setTotal(e.target.value)}
-        className="shadow-md focus:ring-indigo-500 focus:border-indigo-500 block w-96 sm:text-md border-gray-300 rounded-md"
+        className="shadow-md focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-md border-gray-300 rounded-md"
         readOnly required
       />
     </div>   <div className="flex flex-col items-center justify-center">
-      <label htmlFor="nft-count" className="text-base font-medium text-left w-96 mb-2">Total NFTs Owned:</label>
+                  <label htmlFor="nft-count" className="text-base font-medium text-left w-full mb-2">How many Wolfer Finance NFTs do you have in other wallets
+                    that are different from the one you connected to the site?:</label>
       <input
         type="text"
         id="nft-count"
         name="nft-count"
         value={totaltwo}
         onChange={(e) => setTotaltwo(e.target.value)}
-        className="shadow-md focus:ring-indigo-500 focus:border-indigo-500 block w-96 sm:text-md border-gray-300 rounded-md"
-        readOnly required
+        className="shadow-md focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-md border-gray-300 rounded-md"
+        required
       />
     </div><div className="flex hidden flex-col items-center justify-center">
-  <label htmlFor="nft-names" className="text-base font-medium text-left w-96 mb-2">NFT Names:</label>
+  <label htmlFor="nft-names" className="text-base font-medium text-left w-full mb-2">NFT Names:</label>
   <textarea
     id="nft-names"
     name="nft-names"
@@ -291,21 +293,11 @@ setOwnedNFTNames(ownedNFTNamesFiltered);
     className="shadow-md focus:ring-indigo-500 focus:border-indigo-500 block w-96 sm:text-md border-gray-300 rounded-md"
     readOnly required
   />
-</div><div className="flex hidden flex-col items-center justify-center">
-  <label htmlFor="nft-names" className="text-base font-medium text-left w-96 mb-2">NFT Names:</label>
-  <textarea
-    id="nft-names"
-    name="nft-names"
-    value={ownedNFTNamestwo.join(', ')}
-    onChange={(e) => setOwnedNFTNamestwo(e.target.value.split(','))}
-    className="shadow-md focus:ring-indigo-500 focus:border-indigo-500 block w-96 sm:text-md border-gray-300 rounded-md"
-    readOnly required
-  />
 </div>
           <div className='flex hidden items-center justify-center flex-col'>
           
                   
-            <label htmlFor='wallet' className="text-base font-medium text-left w-96 mb-2">Your Wallet Address:
+            <label htmlFor='wallet' className="text-base font-medium text-left w-full mb-2">Your Wallet Address:
             </label>
             <input
               value={wallet}
@@ -318,7 +310,7 @@ setOwnedNFTNames(ownedNFTNamesFiltered);
             />
                
                 </div><div className="flex flex-col mt-5">
-    <div className="flex-row mb-3">
+    <div className="flex-row pb-3 border-b border-gray-500 ">
       <input
         type="radio"
         id="option1"
@@ -328,10 +320,10 @@ setOwnedNFTNames(ownedNFTNamesFiltered);
         onChange={(e) => setSelectedOption(e.target.value)}
       />
       <label htmlFor="option1" className="text-md cursor-pointer font-medium ml-5">
-        Yes I own both
+        Yes, I own both Wolfer Finance and PreSend NFTs.
       </label>
     </div>
-    <div className="flex-row">
+    <div className="flex-row pt-3">
       <input
         type="radio"
         id="option2"
@@ -341,7 +333,7 @@ setOwnedNFTNames(ownedNFTNamesFiltered);
         onChange={(e) => setSelectedOption(e.target.value)}
       />
       <label htmlFor="option2" className="text-md font-medium cursor-pointer ml-5">
-        No I don't
+        No, I do not own both Wolfer Finance and PreSend NFTs.
       </label>
     </div>
   </div>
@@ -349,9 +341,9 @@ setOwnedNFTNames(ownedNFTNamesFiltered);
           <div className='flex items-center justify-center'>
             <button
               type='submit'
-              className='flex items-center justify-center text-sm w-96 rounded-md shadow py-3 px-2 text-white bg-indigo-600'
+              className='flex items-center justify-center text-sm w-full rounded-md shadow py-3 px-2 text-white bg-indigo-600'
             >
-              Save
+              Submit
             </button>
           </div>
         </form>
@@ -375,16 +367,16 @@ setOwnedNFTNames(ownedNFTNamesFiltered);
         </div>
       </div>
       <div className='flex flex-col justify-around mt-5 sm:mt-6'>
-        <a href='https://presend.io' target='_blank' rel='noopener noreferrer'>
+        <a href='https://app.tokenoftrust.com/com/wolfer.finance' target='_blank' rel='noopener noreferrer'>
           <button
             type='button'
             className='inline-flex mb-4 justify-center w-full rounded-md border border-transparent px-4 py-2  bg-green-500 text-md leading-6 font-semibold text-white shadow-sm hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo transition ease-in-out duration-150 sm:text-sm sm:leading-5'
           >
-            PreSend Kyc
+           Wolfer Finance KYC/AML Link
           </button>
         </a> 
   <span className='flex  rounded-md shadow-sm'>
-    <a href='https://presend.io' target='_blank' rel='noopener noreferrer'>
+    <a href='https://app.tokenoftrust.com/com/kyc.wolfer.finance' target='_blank' rel='noopener noreferrer'>
       <button
         type='button'
         className='inline-flex justify-center w-full rounded-md border border-transparent px-4 py-2 bg-indigo-600 text-md leading-6 font-semibold text-white shadow-sm hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo transition ease-in-out duration-150 sm:text-sm sm:leading-5'
@@ -410,7 +402,7 @@ setOwnedNFTNames(ownedNFTNamesFiltered);
       </div>
 
      
-    </main> ):(<p>you dont have our membership sir/madam</p>)}</div>
+    </main> ):(<p className='mt-5 font-semibold '>you dont have our membership sir/madam</p>)}</div>
     <div className='  flex object-center items-center'>
       <div className='max-w-4xl mx-auto  flex flex-col p-6'><Card /></div>  </div></div> </div> 
   )
