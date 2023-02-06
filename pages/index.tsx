@@ -39,14 +39,10 @@ const [showPopup, setShowPopup] = useState(false)
   
   
   const { contract: firstContract } = useContract(
-        "0x62A4270F8EB826428B6afD158d647e56558AAf30", 
-        "signature-drop"
+        "0xCe8A6E03e6996f259191a18c4E2Aa398319b04E9", 
+        "nft-drop"
     );
 
-    const { contract: secondContract } = useContract(
-        "0xE62d775E3Cc91659034dFC3b09a46259D6942c2c", 
-  "signature-drop"
-    );
     
   useEffect(() => {
     if (!address) {
@@ -62,20 +58,14 @@ const [showPopup, setShowPopup] = useState(false)
           setTotal(nfts.length.toString());
           
         }
-             if ( secondContract ) {
-      const nfts = await  secondContract.getOwned(address);
-          setHasClaimedNFT(nfts?.length > 0);
-          
-          setTotaltwo(nfts.length.toString());
-          
-    }
+             
       } catch (error) {
         setHasClaimedNFT(false)
         console.error("Failed to get NFTS", error)
       }
       }
     checkBalance()
-  }, [address, firstContract, secondContract])
+  }, [address, firstContract])
  type NFT = {
   metadata: {
     name: string
@@ -150,8 +140,8 @@ const getNFTNames = (nfts: NFT[]) => {
     setSelectedOption('')
     setStreetAddress('')
     setOwnedNFTNames([])
-    setOwnedNFTNamestwo([])
-    setTotaltwo('')
+    
+    
     
   }
   useEffect(() => {
@@ -168,20 +158,14 @@ const getNFTNames = (nfts: NFT[]) => {
 setOwnedNFTNames(ownedNFTNamesFiltered);
           
         }
-         if (secondContract) {
-          const nfts = await secondContract.getOwned(address);
-          const ownedNFTNamestwo = nfts.map((nft) => nft.metadata.name);
-          const ownedNFTNamestwoFiltered = ownedNFTNamestwo.filter((nft) => nft !== undefined) as string[];
-setOwnedNFTNamestwo(ownedNFTNamestwoFiltered);
-          
-        }
+        
       } catch (error) {
         console.error("Failed to get owned NFT names", error);
       }
     };
 
     getOwnedNFTNames();
-  }, [address, firstContract, secondContract]);
+  }, [address, firstContract]);
   useEffect(() => {
     if (address) {
       setWallet(address);
