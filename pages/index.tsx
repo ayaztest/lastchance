@@ -40,7 +40,7 @@ const [showPopup, setShowPopup] = useState(false)
   
   
   const { contract: firstContract } = useContract(
-        "0xE62d775E3Cc91659034dFC3b09a46259D6942c2c", 
+        "0xCe8A6E03e6996f259191a18c4E2Aa398319b04E9", 
         "nft-drop"
     );
 
