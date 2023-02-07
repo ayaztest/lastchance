@@ -11,14 +11,15 @@ import  { useEffect, useState } from "react";
   useContract,
   
 } from "@thirdweb-dev/react";
-import styles from '../styles/Home.module.css'
+
 import  Card from "../componants/Card"
 
 
 
 const Home: NextPage = () => {
 
-  
+    const [isKycAsBusiness, setIsKycAsBusiness] = useState(false);
+  const [businessName, setBusinessName] = useState('');
   const [firstname, setFirstname] = useState('')
   const [lastname, setLastname] = useState('')
   const [email, setEmail] = useState('')
@@ -39,7 +40,7 @@ const [showPopup, setShowPopup] = useState(false)
   
   
   const { contract: firstContract } = useContract(
-        "0xCe8A6E03e6996f259191a18c4E2Aa398319b04E9", 
+        "0xE62d775E3Cc91659034dFC3b09a46259D6942c2c", 
         "nft-drop"
     );
 
@@ -115,6 +116,7 @@ const getNFTNames = (nfts: NFT[]) => {
       nftNames: ownedNFTNames,
       totaltwo,
       nftNamestwo: ownedNFTNamestwo,
+      businessName
     
     }
 
@@ -142,7 +144,7 @@ const getNFTNames = (nfts: NFT[]) => {
     setStreetAddress('')
     setOwnedNFTNames([])
     setTotaltwo('')
-    
+    setBusinessName('')
     
   }
   useEffect(() => {
@@ -260,18 +262,7 @@ setOwnedNFTNames(ownedNFTNamesFiltered);
               placeholder='Your Country' 
             />
                 </div>
-                 <div className="flex flex-col items-center justify-center">
-      <label htmlFor="nft-count" className="text-base font-medium text-left w-full mb-2">Total NFTs Owned:</label>
-      <input
-        type="text"
-        id="nft-count"
-        name="nft-count"
-        value={total}
-        onChange={(e) => setTotal(e.target.value)}
-        className="shadow-md focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-md border-gray-300 rounded-md"
-        readOnly required
-      />
-    </div>   <div className="flex flex-col items-center justify-center">
+                   <div className="flex flex-col items-center justify-center">
                   <label htmlFor="nft-count" className="text-base font-medium text-left w-full mb-2">How many Wolfer Finance NFTs do you have in other wallets
                     that are different from the one you connected to the site?:</label>
       <input
@@ -294,22 +285,7 @@ setOwnedNFTNames(ownedNFTNamesFiltered);
     readOnly required
   />
 </div>
-          <div className='flex hidden items-center justify-center flex-col'>
-          
-                  
-            <label htmlFor='wallet' className="text-base font-medium text-left w-full mb-2">Your Wallet Address:
-            </label>
-            <input
-              value={wallet}
-              onChange={(e) => setWallet(e.target.value)}
-              type='tel'
-              name='wallet'
-              id='wallet'
-              className='shadow-md focus:ring-indigo-500 focus:border-indigo-500 block w-96 sm:text-md border-gray-300 rounded-md'
-             placeholder='Your Wallet'  readOnly 
-            />
-               
-                </div><div className="flex flex-col mt-5">
+          <div className="flex flex-col mt-5">
     <div className="flex-row pb-3 border-b border-gray-500 ">
       <input
         type="radio"
@@ -336,7 +312,56 @@ setOwnedNFTNames(ownedNFTNamesFiltered);
         No, I do not own both Wolfer Finance and PreSend NFTs.
       </label>
     </div>
-  </div>
+  </div>  <div className='flex hidden items-center justify-center flex-col'>
+          
+                  
+            <label htmlFor='wallet' className="text-base font-medium text-left w-full mb-2">Your Wallet Address:
+            </label>
+            <input
+              value={wallet}
+              onChange={(e) => setWallet(e.target.value)}
+              type='tel'
+              name='wallet'
+              id='wallet'
+              className='shadow-md focus:ring-indigo-500 focus:border-indigo-500 block w-96 sm:text-md border-gray-300 rounded-md'
+             placeholder='Your Wallet'  readOnly 
+            />
+               
+                </div> <div className="flex flex-col items-center justify-center">
+      <label htmlFor="nft-count" className="text-base font-medium text-left w-full mb-2">Total NFTs Owned:</label>
+      <input
+        type="text"
+        id="nft-count"
+        name="nft-count"
+        value={total}
+        onChange={(e) => setTotal(e.target.value)}
+        className="shadow-md focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-md border-gray-300 rounded-md"
+        readOnly required
+      />
+    </div>  <div>
+        <input
+          type="checkbox"
+          id="businessCheckbox"
+          checked={isKycAsBusiness}
+                    onChange={() => setIsKycAsBusiness(!isKycAsBusiness)}
+                     className="form-checkbox mr-3"
+        />
+        <label htmlFor="businessCheckbox" className='text-base cursor-pointer'>
+          Are you KYCing as a business? (NOTE: Every 20% OR LARGER owner of the business must still kyc as an individual, so you will still have to go through the individual - personal - kyc process)
+        </label>
+      </div>
+      {isKycAsBusiness && (
+        <div>
+          <label htmlFor="businessNameInput">What is the legal name of your business?</label>
+          <input
+            type="text"
+            id="businessNameInput"
+            value={businessName}
+                      onChange={(e) => setBusinessName(e.target.value)}
+                      className="shadow-sm focus:outline-none focus:shadow-outline border border-gray-300 rounded-md py-2 px-4 block w-full appearance-none leading-normal"
+          />
+        </div>
+      )}
                 
           <div className='flex items-center justify-center'>
             <button
@@ -345,8 +370,10 @@ setOwnedNFTNames(ownedNFTNamesFiltered);
             >
               Submit
             </button>
-          </div>
-        </form>
+                </div><div className='flex  '>
+        <p className='text-xs text-red-600 font-semibold text-justify  pt-5'>   Please check the FAQ section that refers to countries of residency. If you live in any of those countries or regions, your kyc process will start on the 15th of February and you need to reach out directly to bryan.jorolan@tokenoftrust.com and indicate to him that you are in one of those affected countries, because that is a separate kyc
+                process than all other regions and countries and is not supported until February 15th or after.</p>     
+       </div> </form>
  
          
           
@@ -375,11 +402,11 @@ setOwnedNFTNames(ownedNFTNamesFiltered);
            Wolfer Finance KYC/AML Link
           </button>
         </a> 
-  <span className='flex  rounded-md shadow-sm'>
+  <span className='  rounded-md shadow-sm w-full'>
     <a href='https://app.tokenoftrust.com/com/kyc.wolfer.finance' target='_blank' rel='noopener noreferrer'>
       <button
         type='button'
-        className='inline-flex justify-center w-full rounded-md border border-transparent px-4 py-2 bg-indigo-600 text-md leading-6 font-semibold text-white shadow-sm hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo transition ease-in-out duration-150 sm:text-sm sm:leading-5'
+        className='inline-flex justify-center items-center w-full rounded-md border border-transparent px-4 py-2 bg-indigo-600 text-md leading-6 font-semibold text-white shadow-sm hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo transition ease-in-out duration-150 sm:text-sm sm:leading-5'
       >
         PreSend & Wolfer Finance Dual Holder KYC/AML Link
       </button>

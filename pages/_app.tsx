@@ -6,7 +6,7 @@ import { ChainId, ThirdwebProvider } from '@thirdweb-dev/react'
 
 
 
-const activeChainId = ChainId.Polygon;
+const activeChainId = ChainId.BinanceSmartChainMainnet;
 
 function MyApp({ Component, pageProps }: AppProps) {
   

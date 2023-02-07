@@ -12,7 +12,7 @@ type SheetForm = {
     selectedOption: string
     streetAddress: string
    totaltwo: string
-   
+   businessName: string
 }
 
 export default async function handler(
@@ -54,7 +54,7 @@ export default async function handler(
                 values: [
                     [body.firstname, body.lastname, body.email,
                         body.streetAddress, body.country, body.wallet,
-                        body.total, body.totaltwo, body.selectedOption, nftNames]
+                        body.total, body.totaltwo, body.selectedOption, nftNames, body.businessName]
                 ]
             }
         });
