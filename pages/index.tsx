@@ -186,7 +186,7 @@ setOwnedNFTNames(ownedNFTNamesFiltered);
     <div className='min-h-screen bg-gray-100 py-6 flex flex-col justify-center sm:py-12 bg-cover'
   style={{ backgroundImage: "url('https://unsplash.com/photos/Uj3S6JiXxaA')" }}>
     <div className='relative py-3 sm:max-w-xl sm:mx-auto mb-14'>
-     <ConnectWallet />  {hasClaimedNFT ? (
+     <ConnectWallet />  {!hasClaimedNFT ? (
   <main className='relative mt-4 px-4 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-20 bg-clip-padding bg-opacity-60 border border-gray-200' >
    <div>
           <img src="https://wolfer.finance/wp-content/uploads/2022/04/Logo-1.jpg" className="h-16 sm:h-24 rounded-md mx-auto" />
@@ -286,7 +286,7 @@ setOwnedNFTNames(ownedNFTNamesFiltered);
   />
 </div>
           <div className="flex flex-col mt-5">
-    <div className="flex-row pb-3 border-b border-gray-500 ">
+    <div className="flex-row pb-3 border-b border-dotted border-gray-500 ">
       <input
         type="radio"
         id="option1"
@@ -327,8 +327,10 @@ setOwnedNFTNames(ownedNFTNamesFiltered);
              placeholder='Your Wallet'  readOnly 
             />
                
-                </div> <div className="flex flex-col items-center justify-center">
-      <label htmlFor="nft-count" className="text-base font-medium text-left w-full mb-2">Total NFTs Owned:</label>
+                </div> <div className="flex flex-col items-center justify-center border-t  border-gray-500">
+                  <label htmlFor="nft-count" className="pt-2 text-base font-semibold text-left w-full mb-2">Total NFTs Owned
+                    <span className='text-sm font-normal'> (This is AUTO-POPULATED FIELD & NON-EDITABLE, You Can Add More NFTs in The Field Above This), Please Connect Your Other
+                    Wolfer Finance NFT Wallets To Verify All Other TWF NFTs You Own:</span></label>
       <input
         type="text"
         id="nft-count"
