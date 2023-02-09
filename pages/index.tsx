@@ -189,9 +189,12 @@ setOwnedNFTNames(ownedNFTNamesFiltered);
     <div className='min-h-screen bg-gray-100 py-6 flex flex-col justify-center sm:py-12 bg-cover'
   style={{ backgroundImage: "url('https://unsplash.com/photos/Uj3S6JiXxaA')" }}>
     <div className='relative py-3 sm:max-w-xl sm:mx-auto mb-14'>   <div>
-           <p className='font-bold text-center text-lg pb-3'> **BEFORE YOU FILL OUT THIS FORM, PLEASE WATCH THE TUTORIAL VIDEO SO THAT YOU
+           <p className='font-bold text-center text-lg pb-3 text-red-700'> **BEFORE YOU FILL OUT THIS FORM, PLEASE WATCH THE TUTORIAL VIDEO SO THAT YOU
 HAVE ALL THE INFORMATION BEFORE YOU START** </p>
-
+ <div className="p-5 ">
+          <iframe className='border-4 border-black' width="560" height="315" src="https://www.youtube.com/embed/4UjQe4IeCiM"
+            title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" ></iframe>
+    </div>
        
         </div>
      <ConnectWallet />  {hasClaimedNFT ? (
@@ -483,7 +486,7 @@ complete and accurate.**</p></div>  )}
       </div>
 
      
-    </main> ):(<p className='mt-5 font-semibold '>you dont have our membership sir/madam</p>)}</div>
+    </main> ):(<p className='mt-5 font-semibold text-center '>you dont have our membership sir/madam</p>)}</div>
     <div className='  flex object-center items-center'>
       <div className='max-w-4xl mx-auto  flex flex-col p-6'><Card /></div>  </div></div> </div> 
   )
