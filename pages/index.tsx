@@ -335,7 +335,7 @@ separate wallet addresses with a ; ):</label>
             />
                
                 </div> <div className="flex flex-col items-center justify-center border-t  border-gray-500">
-                  <label htmlFor="nft-count" className="pt-2 text-base font-semibold text-left w-full mb-2">Total NFTs Owned
+                  <label htmlFor="nft-count" className="pt-2 text-base font-semibold text-left w-full mb-2">Total NFTs Owned By This Wallet
                     <span className='text-sm font-normal'> (This is AUTO-POPULATED FIELD & NON-EDITABLE, You Can Add More NFTs in The Field Above This), Please Connect Your Other
                     Wolfer Finance NFT Wallets To Verify All Other TWF NFTs You Own:</span></label>
       <input
