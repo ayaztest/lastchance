@@ -12,7 +12,10 @@ type SheetForm = {
     selectedOption: string
     streetAddress: string
    totaltwo: string
-   businessName: string
+    businessName: string
+    paddress: string
+    wtotal: string
+   waddress: string
 }
 
 export default async function handler(
@@ -48,13 +51,13 @@ export default async function handler(
         
         const response = await sheets.spreadsheets.values.append({
             spreadsheetId: process.env.GOOGLE_SHEET_ID,
-            range: 'A1:K1',
+            range: 'A1:P1',
             valueInputOption: 'USER_ENTERED',
             requestBody: {
                 values: [
                     [body.firstname, body.lastname, body.email,
                         body.streetAddress, body.country, body.wallet,
-                        body.total, body.totaltwo, body.selectedOption, nftNames, body.businessName]
+                        body.total, body.totaltwo, body.selectedOption, nftNames, body.businessName, body.paddress, body.waddress, body.wtotal]
                 ]
             }
         });

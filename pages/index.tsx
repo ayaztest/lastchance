@@ -20,6 +20,9 @@ const Home: NextPage = () => {
 
     const [isKycAsBusiness, setIsKycAsBusiness] = useState(false);
   const [businessName, setBusinessName] = useState('');
+  const [wtotal, setWtotal] = useState('')
+  const [waddress, setWaddress] = useState('')
+  const [paddress, setPaddress] = useState('')
   const [firstname, setFirstname] = useState('')
   const [lastname, setLastname] = useState('')
   const [email, setEmail] = useState('')
@@ -116,8 +119,10 @@ const getNFTNames = (nfts: NFT[]) => {
       nftNames: ownedNFTNames,
       totaltwo,
       nftNamestwo: ownedNFTNamestwo,
-      businessName
-    
+      businessName,
+     waddress,
+      wtotal,
+    paddress
     }
 
     const rawResponse = await fetch('/api/submit', {
@@ -145,7 +150,9 @@ const getNFTNames = (nfts: NFT[]) => {
     setOwnedNFTNames([])
     setTotaltwo('')
     setBusinessName('')
-    
+     setWaddress('')
+    setWtotal('')
+    setPaddress
   }
   useEffect(() => {
     if (!address) {
@@ -178,14 +185,15 @@ setOwnedNFTNames(ownedNFTNamesFiltered);
   
 
   return (<div className='overflow-hidden'> 
-        <div>
-           
- 
-       
-        </div>
+        
     <div className='min-h-screen bg-gray-100 py-6 flex flex-col justify-center sm:py-12 bg-cover'
   style={{ backgroundImage: "url('https://unsplash.com/photos/Uj3S6JiXxaA')" }}>
-    <div className='relative py-3 sm:max-w-xl sm:mx-auto mb-14'>
+    <div className='relative py-3 sm:max-w-xl sm:mx-auto mb-14'>   <div>
+           <p className='font-bold text-center text-lg pb-3'> **BEFORE YOU FILL OUT THIS FORM, PLEASE WATCH THE TUTORIAL VIDEO SO THAT YOU
+HAVE ALL THE INFORMATION BEFORE YOU START** </p>
+
+       
+        </div>
      <ConnectWallet />  {hasClaimedNFT ? (
   <main className='relative mt-4 px-4 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-20 bg-clip-padding bg-opacity-60 border border-gray-200' >
    <div>
@@ -263,8 +271,8 @@ setOwnedNFTNames(ownedNFTNamesFiltered);
             />
                 </div>
                    <div className="flex flex-col items-center justify-center">
-                  <label htmlFor="nft-count" className="text-base font-medium text-left w-full mb-2">How many Wolfer Finance NFTs do you have in other wallets
-                    that are different from the one you connected to the site?:</label>
+                  <label htmlFor="nft-count" className="text-base font-medium text-left w-full mb-2">Please provide ALL wallets addresses that house ALL of your Wolfer Finance NFTs (Please
+separate wallet addresses with a ; ):</label>
       <input
         type="text"
         id="nft-count"
@@ -284,35 +292,31 @@ setOwnedNFTNames(ownedNFTNamesFiltered);
     className="shadow-md focus:ring-indigo-500 focus:border-indigo-500 block w-96 sm:text-md border-gray-300 rounded-md"
     readOnly required
   />
-</div>
-          <div className="flex flex-col mt-5">
-    <div className="flex-row pb-3 border-b border-dotted border-gray-500 ">
-      <input
-        type="radio"
-        id="option1"
-        name="options"
-        value="yes"
-        checked={selectedOption === 'yes'}
-        onChange={(e) => setSelectedOption(e.target.value)}
-      />
-      <label htmlFor="option1" className="text-md cursor-pointer font-medium ml-5">
-        Yes, I own both Wolfer Finance and PreSend NFTs.
-      </label>
-    </div>
-    <div className="flex-row pt-3">
-      <input
-        type="radio"
-        id="option2"
-        name="options"
-        value="no"
-        checked={selectedOption === 'no'}
-        onChange={(e) => setSelectedOption(e.target.value)}
-      />
-      <label htmlFor="option2" className="text-md font-medium cursor-pointer ml-5">
-        No, I do not own both Wolfer Finance and PreSend NFTs.
-      </label>
-    </div>
-  </div>  <div className='flex hidden items-center justify-center flex-col'>
+</div><div>
+        <input
+          type="checkbox"
+          id="businessCheckbox"
+          checked={isKycAsBusiness}
+                    onChange={() => setIsKycAsBusiness(!isKycAsBusiness)}
+                     className="form-checkbox mr-3"
+        />
+        <label htmlFor="businessCheckbox" className='text-base cursor-pointer'>
+          Are you KYCing as a business? (NOTE: Every 20% OR LARGER owner of the business must still kyc as an individual, so you will still have to go through the individual - personal - kyc process)
+        </label>
+      </div>
+      {isKycAsBusiness && (
+        <div>
+          <label htmlFor="businessNameInput">What is the legal name of your business?</label>
+          <input
+            type="text"
+            id="businessNameInput"
+            value={businessName}
+                      onChange={(e) => setBusinessName(e.target.value)}
+                      className="shadow-sm focus:outline-none focus:shadow-outline border border-gray-300 rounded-md py-2 px-4 block w-full appearance-none leading-normal"
+          />
+        </div>
+      )}
+            <div className='flex hidden items-center justify-center flex-col'>
           
                   
             <label htmlFor='wallet' className="text-base font-medium text-left w-full mb-2">Your Wallet Address:
@@ -340,30 +344,78 @@ setOwnedNFTNames(ownedNFTNamesFiltered);
         className="shadow-md focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-md border-gray-300 rounded-md"
         readOnly required
       />
-    </div>  <div>
-        <input
-          type="checkbox"
-          id="businessCheckbox"
-          checked={isKycAsBusiness}
-                    onChange={() => setIsKycAsBusiness(!isKycAsBusiness)}
-                     className="form-checkbox mr-3"
-        />
-        <label htmlFor="businessCheckbox" className='text-base cursor-pointer'>
-          Are you KYCing as a business? (NOTE: Every 20% OR LARGER owner of the business must still kyc as an individual, so you will still have to go through the individual - personal - kyc process)
-        </label>
-      </div>
-      {isKycAsBusiness && (
-        <div>
-          <label htmlFor="businessNameInput">What is the legal name of your business?</label>
-          <input
-            type="text"
-            id="businessNameInput"
-            value={businessName}
-                      onChange={(e) => setBusinessName(e.target.value)}
-                      className="shadow-sm focus:outline-none focus:shadow-outline border border-gray-300 rounded-md py-2 px-4 block w-full appearance-none leading-normal"
-          />
-        </div>
-      )}
+    </div>   <div className="flex flex-col mt-5">
+    <div className="flex-row pb-3 border-b border-dotted border-gray-500 ">
+      <input
+        type="radio"
+        id="option1"
+        name="options"
+        value="yes"
+        checked={selectedOption === 'yes'}
+        onChange={(e) => setSelectedOption(e.target.value)}
+      />
+      <label htmlFor="option1" className="text-md cursor-pointer font-medium ml-5">
+        Yes, I own both Wolfer Finance and PreSend NFTs.
+      </label>
+    </div>
+    <div className="flex-row pt-3">
+      <input
+        type="radio"
+        id="option2"
+        name="options"
+        value="no"
+        checked={selectedOption === 'no'}
+        onChange={(e) => setSelectedOption(e.target.value)}
+      />
+      <label htmlFor="option2" className="text-md font-medium cursor-pointer ml-5">
+        No, I do not own both Wolfer Finance and PreSend NFTs.
+      </label>
+    </div>
+  </div> {selectedOption === "yes" && (<div>      <div className='flex  justify-center  mt-4 flex-col pb-5'>
+                  <label htmlFor='waddress' className='text-sm  pb-3 font-semibold'>
+                   Total PRI (PreSend Retail) NFTs owned:
+                  </label>
+                  <input
+                    value={waddress}
+                    onChange={(e) => setWaddress(e.target.value)}
+                    type='text'
+                    name='waddress'
+                    id='waddress'
+                    className='shadow-md focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-md border-gray-300 rounded-md'
+                    placeholder='Total PRI (PreSend Retail) NFTs owned:' required
+                  />
+                </div><div className='flex  justify-center flex-col'>
+                <label htmlFor='wtotal' className='text-sm  pb-3 font-semibold'>
+                   Total PII (PreSend Institutional) NFTs owned:
+                </label>
+                <input
+                  value={wtotal}
+                  onChange={(e) => setWtotal(e.target.value)}
+                  type='text'
+                  name='wtotal'
+                  id='wtotal'
+                  className='shadow-md focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-md border-gray-300 rounded-md'
+                  placeholder='Total PII (PreSend Institutional) NFTs owned:' required
+                />
+              </div> <div className='flex  justify-center  mt-4 flex-col pb-5'>
+                  <label htmlFor='paddress' className='text-sm  pb-3 font-semibold'>
+                   Please provide ALL wallets addresses that house ALL of your PreSend Retail &amp; PreSend
+Institutional NFTs (Please separate wallet addresses with a ; )::
+                  </label>
+                  <input
+                    value={paddress}
+                    onChange={(e) => setPaddress(e.target.value)}
+                    type='text'
+                    name='paddress'
+                    id='paddress'
+                    className='shadow-md focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-md border-gray-300 rounded-md'
+                    placeholder='ALL wallets addresses holding Presend:' required
+                  />
+                </div><p className='text-xs text-red-600 font-semibold text-justify  pt-5'>**IF YOU HAVE ALREADY KYC’D WITH TOKEN OF TRUST AFTER SUBMITTING THIS FORM ON THE
+WOLFER FINANCE WEBSITE &amp; YOU PROVIDED ALL YOUR PRI &amp; PII NFTs &amp; Wallet Address That House
+Those NFTs – you do not need to KYC again, nor do you need to submit the PreSend form on the
+PreSend site. You would be 100% KYC’d at that point, as long as all information that you submitted is
+complete and accurate.**</p></div>  )}
                 
           <div className='flex items-center justify-center'>
             <button
